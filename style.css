@@ -1,0 +1,298 @@
+@font-face {
+    font-family: 'Kosan';
+    src: url('./assets/Kosan.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Google Sans Code';
+    src: url('./assets/GoogleSansCode-Regular.ttf') format('truetype');
+}
+
+:root {
+    --font-brand: 'Kosan', sans-serif;
+    --font-ui: 'Google Sans Code', monospace;
+
+    --color-ui-white: rgba(255, 255, 255, 0.95);
+    --color-ui-line: rgba(255, 255, 255, 0.14);
+    --color-ui-bg: rgba(0, 0, 0, 0.28);
+    --color-page-bg: #171717;
+
+    --color-panel-bg: rgba(255, 255, 255, 0.82);
+    --color-panel-text: #161616;
+    --color-link: #111;
+
+    --radius-sm: 4px;
+    --radius-md: 12px;
+    --radius-lg: 18px;
+    --radius-xl: 24px;
+
+    --transition-fast: 160ms ease;
+    --transition-medium: 220ms ease;
+    --transition-slow: 260ms ease;
+
+    --topbar-height: 72px;
+}
+
+html,
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: var(--color-page-bg);
+}
+
+canvas {
+    display: block;
+    transition: filter var(--transition-slow), transform var(--transition-slow), opacity var(--transition-slow);
+}
+
+#app-ui {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.header-bar {
+    pointer-events: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--topbar-height);
+    display: flex;
+    align-items: stretch;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0)), var(--color-ui-bg);
+    border-bottom: 1px solid var(--color-ui-line);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 20;
+}
+
+.topbar__brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 28px;
+    border-right: 1px solid var(--color-ui-line);
+    color: var(--color-ui-white);
+    font-family: var(--font-brand);
+    font-size: 1.55rem;
+    letter-spacing: 0.02em;
+}
+
+.topbar__nav {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 0 36px;
+}
+
+.topbar__nav a,
+.topbar__info-button {
+    padding: 8px 12px;
+    color: var(--color-ui-white);
+    text-decoration: none;
+    font-family: var(--font-ui);
+    font-size: 0.92rem;
+    letter-spacing: 0.08em;
+    border: none;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+}
+
+.topbar__nav a:hover,
+.topbar__info-button:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.hero__nameplate {
+    position: fixed;
+    left: 50%;
+    top: calc(50% + 155px);
+    transform: translateX(-50%);
+    text-align: center;
+    pointer-events: none;
+}
+
+.hero__name {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.96);
+    font-family: var(--font-ui);
+    font-size: 1rem;
+    letter-spacing: 0.22em;
+}
+
+.info-overlay {
+    position: fixed;
+    inset: var(--topbar-height) 0 0 0;
+    pointer-events: none;
+    z-index: 30;
+}
+
+.info-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.12);
+    opacity: 0;
+    transition: opacity var(--transition-medium);
+}
+
+.info-modal__panel {
+    position: absolute;
+    left: 50%;
+    top: 16px;
+    transform: translateX(-50%) scale(0.96);
+    width: min(760px, calc(100vw - 56px));
+    height: calc(100vh - var(--topbar-height) - 32px);
+    overflow: hidden;
+    background: var(--color-panel-bg);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    color: var(--color-panel-text);
+    border-radius: var(--radius-xl);
+    opacity: 0;
+    transition: opacity var(--transition-medium), transform var(--transition-slow);
+    pointer-events: none;
+    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.25), 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.info-modal__inner {
+    height: 100%;
+    padding: 28px 60px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.info-modal__top {
+    text-align: center;
+}
+
+.info-modal__middle {
+    text-align: center;
+    max-width: 600px;
+    margin-top: 8px;
+}
+
+.info-modal__bottom {
+    text-align: center;
+    margin-top: auto;
+    transform: translateY(-45px);
+}
+
+.info-modal__close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(0, 0, 0, 0.14);
+    background: rgba(255, 255, 255, 0.75);
+    color: #111;
+    font-size: 1.7rem;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+}
+
+.info-modal__logo {
+    margin: 0;
+    font-family: var(--font-brand);
+    font-size: clamp(3rem, 5vw, 4.6rem);
+    line-height: 0.92;
+    color: #000;
+}
+
+.info-modal__name {
+    margin: 6px 0 0;
+    font-family: var(--font-ui);
+    font-size: 0.96rem;
+}
+
+.info-modal__paragraph,
+.info-modal__block p {
+    margin: 0;
+    font-family: var(--font-ui);
+    font-size: 0.84rem;
+    line-height: 1.45;
+    color: rgba(22, 22, 22, 0.9);
+}
+
+.info-modal__paragraph {
+    margin-top: 28px;
+    margin-bottom: 26px;
+    font-size: 0.88rem;
+}
+
+.info-modal__block {
+    width: 100%;
+    max-width: 620px;
+}
+
+.info-modal__block h2 {
+    margin: 0 0 6px;
+    font-family: var(--font-ui);
+    font-size: 0.86rem;
+    letter-spacing: 0.08em;
+}
+
+.info-modal__photo-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -40px;
+    margin-bottom: 20px;
+}
+
+.info-modal__photo {
+    width: 250px;
+    height: 330px;
+    object-fit: contain;
+    object-position: center;
+    border-radius: var(--radius-lg);
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.info-modal__bottom .info-modal__block + .info-modal__block {
+    margin-top: 18px;
+}
+
+.info-modal__block a {
+    color: var(--color-link);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.info-modal__block a:hover {
+    border-bottom-color: rgba(0, 0, 0, 0.7);
+}
+
+body.info-open canvas {
+    filter: blur(10px) saturate(0.95);
+}
+
+body.info-open .hero__nameplate {
+    filter: blur(8px);
+    opacity: 0.55;
+}
+
+body.info-open .info-overlay {
+    pointer-events: auto;
+}
+
+body.info-open .info-modal__backdrop {
+    opacity: 1;
+}
+
+body.info-open .info-modal__panel {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+    pointer-events: auto;
+}

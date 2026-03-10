@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aaron Morgan-Jones</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div id="app-ui">
+        <header class="topbar header-bar">
+            <div class="topbar__brand">S3R3N1TY</div>
+
+            <nav class="topbar__nav">
+                <a href="#home">HOME</a>
+                <a href="#projects">PROJECTS</a>
+                <button type="button" class="topbar__info-button" id="infoToggle">INFO</button>
+            </nav>
+        </header>
+
+        <div class="hero__nameplate">
+            <p class="hero__name">AARON MORGAN-JONES</p>
+        </div>
+
+        <div class="info-overlay info-modal" id="infoOverlay" aria-hidden="true">
+            <div class="info-modal__backdrop" id="infoBackdrop"></div>
+
+            <aside class="info-modal__panel" id="infoPanel" role="dialog" aria-modal="true" aria-labelledby="infoTitle">
+                <button class="info-modal__close" id="infoClose" aria-label="Close info panel">×</button>
+
+                <div class="info-modal__inner">
+                    <div class="info-modal__top">
+                        <h1 class="info-modal__logo" id="infoTitle">S3R3N1TY</h1>
+                        <p class="info-modal__name">Aaron Morgan-Jones</p>
+                    </div>
+
+                    <div class="info-modal__middle">
+                        <p class="info-modal__paragraph">
+                            Hi, I’m Aaron, an MEng Computer Science for Games Development student at
+                            the University of Hull. I’m fascinated by the way video games shape our
+                            emotions, from the sadness of losing a beloved character to the sense of
+                            wonder of exploring a new world. That emotional connection inspired me to
+                            start building games myself, with the goal of creating experiences that leave
+                            the same lasting impact on players.
+                        </p>
+
+                        <div class="info-modal__block">
+                            <h2>FOCUS</h2>
+                            <p>
+                                C++, C#, Vulkan, Rust, CUDA, rendering systems, procedural generation,
+                                interactive 3D experiences, and technical design.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="info-modal__bottom">
+                        <div class="info-modal__photo-wrap">
+                            <img src="./assets/photo.jpg"
+                                 alt="Aaron Morgan-Jones"
+                                 class="info-modal__photo"
+                                 width="210"
+                                 height="280">
+                        </div>
+
+                        <div class="info-modal__block">
+                            <h2>LINKS</h2>
+                            <p>
+                                <a href="https://www.linkedin.com/in/53r3n1ty/" target="_blank" rel="noreferrer">LinkedIn</a>
+                                |
+                                <a href="./assets/CV.pdf" target="_blank" rel="noreferrer">CV</a>
+                            </p>
+                        </div>
+
+                        <div class="info-modal__block">
+                            <h2>CONTACT</h2>
+                            <p>
+                                <a href="mailto:aaronmorganjones@gmail.com">aaronmorganjones@gmail.com</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+
+    <script type="module" src="./src/main.js"></script>
+
+
+</body>
+</html>
